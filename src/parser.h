@@ -35,15 +35,16 @@ protected:
   /// If the next token is not \a expected, produce an error string
   /// saying "expected foo, got bar".
   bool ExpectToken(Lexer::Token expected, std::string* err);
+  /// Parse a file, given its contents as a string.
+  virtual bool Parse(const std::string& filename, const std::string& input,
+                     std::string* err) = 0;
 
   State* state_;
   FileReader* file_reader_;
   Lexer lexer_;
 
 private:
-  /// Parse a file, given its contents as a string.
-  virtual bool Parse(const std::string& filename, const std::string& input,
-                     std::string* err) = 0;
+
 };
 
 #endif  // NINJA_PARSER_H_
